@@ -1,0 +1,19 @@
+SELECT n.n_nationkey FROM nation AS n WHERE (n.n_name = 'UNITED STATES');
+
+SELECT n.n_name FROM nation AS n, region AS r WHERE (n.n_regionkey = r.r_regionkey) AND (n.n_nationkey > 5);
+
+SELECT SUM (n.n_nationkey) FROM nation AS n, region AS r WHERE (n.n_regionkey = r.r_regionkey) AND (n.n_name = 'UNITED STATES');
+
+SELECT SUM (n.n_regionkey) FROM nation AS n, region AS r WHERE (n.n_regionkey = r.r_regionkey) AND (n.n_name = 'UNITED STATES') GROUP BY n.n_regionkey;
+
+SELECT SUM DISTINCT (n.n_nationkey + r.r_regionkey)FROM nation AS n, region AS r, customer AS c WHERE (n.n_regionkey = r.r_regionkey) AND (n.n_nationkey = c.c_nationkey) AND (n.n_nationkey > 10)GROUP BY r.r_regionkey;
+
+SET OUTPUT STDOUT;
+
+CREATE TABLE example1 (id INTEGER, name STRING) AS HEAP;
+
+INSERT 'data.txt' INTO TABLE example1;
+
+CREATE TABLE example1 (id INTEGER, name STRING) AS SORTED ON id,name;
+
+
